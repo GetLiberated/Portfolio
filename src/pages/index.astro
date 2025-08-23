@@ -1,16 +1,227 @@
 ---
+import { Image } from "astro:assets";
+import Button from "../components/button.astro";
+import Timeline from "../components/timeline.astro";
+import Box from "../components/box.astro";
+import profilePicture from "../../public/images/profilePicture.jpeg"
+import signature from "../../public/images/signature.png"
+import sunglasses from "../../public/images/deal-with-it-glasses-png-41934.png"
+import "../styles/global.css";
 
+const age = Math.floor((new Date()-new Date('2000-04-09T00:00:00'))/(1000 * 60 * 60 * 24 * 365.25))
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<meta name="theme-color" content="#ffd230" />
+		<title>Eris's Portfolio</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="font-[NexaDemo] text-white bg-[rgb(30,30,30)]">
+		<div class="relative bg-[url('/images/ZVE00576.jpeg')] bg-cover min-h-svh grid md:grid-cols-2 items-end md:items-center pb-10 md:pb-0 justify-center">
+			<div class="absolute inset-0 bg-black/20 z-0"></div>
+			<div class="mx-auto md:mx-0 w-11/12 max-w-3xl col-start-2 space-y-5 z-10">
+				<p class="text-xl lg:text-3xl text-amber-300">I'm</p>
+				<h1 class="text-5xl lg:text-6xl font-black border-l-4 border-amber-300 pl-5">Muhammad <span class="text-amber-300">Erizky</span> Suryaputra</h1>
+				<h2 class="text-xl lg:text-3xl font-medium">A <span class="text-amber-300">Full-Stack Developer</span>, Software Engineer, DevOps Engineer, Webmaster, and self-starter.</h2>
+				<div class="flex gap-2 lg:gap-5 flex-wrap">
+					<Button title="Learn More" onclick="document.getElementById('about-me').scrollIntoView({ behavior: 'smooth' })" />
+					<button class="border-2 border-amber-300 px-6 py-3 rounded-full font-bold cursor-pointer" onclick="document.getElementById('resume').scrollIntoView({ behavior: 'smooth' })">Resume</button>
+				</div>
+				<Image src={signature} alt="signature" width={200} class="!mt-8 invert" />
+			</div>
+			<!-- <div class="absolute bottom-5 w-full flex flex-col items-center gap-2.5 z-10">
+				<p class="font-bold text-sm tracking-widest">SCROLL DOWN TO SEE MORE</p>
+				<svg fill="#FFFFFF" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+					width="24" height="24" viewBox="0 0 970.586 970.586"
+					xml:space="preserve">
+				<g>
+					<path d="M44.177,220.307l363.9,296.4c22.101,18,48.9,27,75.8,27c26.901,0,53.701-9,75.801-27l366.699-298.7
+						c51.4-41.9,59.101-117.4,17.2-168.8c-41.8-51.4-117.399-59.1-168.8-17.3l-290.901,237l-288.1-234.7c-51.4-41.8-127-34.1-168.8,17.3
+						C-14.923,102.907-7.123,178.407,44.177,220.307z"/>
+					<path d="M44.177,642.207l363.9,296.399c22.101,18,48.9,27,75.8,27c26.901,0,53.701-9,75.801-27l366.699-298.7
+						c51.4-41.899,59.101-117.399,17.2-168.8c-41.899-51.399-117.399-59.1-168.8-17.2l-290.901,236.9l-288.1-234.6
+						c-51.4-41.9-127-34.101-168.8,17.199C-14.923,524.807-7.123,600.406,44.177,642.207z"/>
+				</g>
+				</svg>
+			</div> -->
+		</div>
+		<div id="about-me" class="bg-[url('/images/ZVE00527.jpg')] bg-cover py-10 md:py-28 min-h-[80svh] flex items-center">
+			<Box title="About Me" className="w-11/12 max-w-lg lg:max-w-5xl mx-auto">
+				<svg slot="icon" width="48px" height="48px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke-width="4" stroke="#ffd230" fill="none"><circle cx="32" cy="18.14" r="11.14"/><path d="M54.55,56.85A22.55,22.55,0,0,0,32,34.3h0A22.55,22.55,0,0,0,9.45,56.85Z"/></svg>
+				<div class="font-[Open_Sans] lg:flex gap-5 space-y-5 lg:space-y-0">
+					<div class="flex gap-1.5 items-end">
+						<div class="relative flex-none">
+							<Image src={sunglasses} alt="sunglasses" width={40} class="absolute left-[17px] top-8 rotate-y-180 hidden" id="sunglasses" />
+							<Image src={profilePicture} alt="profile picture" width={80} class="rounded-full" onclick="document.getElementById('sunglasses').classList.toggle('hidden')" />
+						</div>
+						<div class="space-y-1.5">
+							{[
+								"Halo! I'm Eris 👋",
+								"I enjoy problem solving, whether its digital or real-world problem 💭",
+								"I'm very fond of technologies 💻",
+								"I strive to become better every day by continuously seeking new knowledge and staying humble."
+							].map((message, i) => (
+								<div class="flex items-end">
+									{i === 3 && <div class="inline-block w-0 h-0 border-solid border-t-0 border-r-0 border-l-[10px] border-b-[10px] border-l-transparent border-r-transparent border-t-transparent border-b-[rgb(30,30,30)]"></div>}
+									<div class={`bg-[rgb(30,30,30)] rounded-r-2xl ${i === 3 ? 'rounded-tl-2xl' : 'rounded-l-2xl ml-2'} p-4`}>
+										<p>{message}</p>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+					<div class="border-amber-300 border-t-2 lg:border-t-0 lg:border-l-2 pt-5 lg:pt-0 lg:pl-5 flex-none flex flex-col gap-y-4 justify-center">
+						<div class="grid grid-cols-[minmax(100px,120px)_1fr] gap-y-2.5">
+							<b>Name:</b>
+							<p>Muhammad Erizky Suryaputra</p>
+							<b>Age:</b>
+							<p>{age}</p>
+							<b>Location:</b>
+							<p>Jakarta</p>
+							<b>Nationality:</b>
+							<p>Indonesian</p>
+							<b>Languages:</b>
+							<p>Indonesian, English</p>
+							<b>Email:</b>
+							<a href="mailto:eris.surya@gmail.com">eris.surya@gmail.com</a>
+						</div>
+						<div class="flex gap-2.5 flex-wrap">
+							<Button onclick="window.open('https://github.com/GetLiberated/')">
+								<svg width="28px" height="28px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+									<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+										<g id="Dribbble-Light-Preview" transform="translate(-140.000000, -7559.000000)" fill="#FFFFFF">
+											<g id="icons" transform="translate(56.000000, 160.000000)">
+												<path d="M94,7399 C99.523,7399 104,7403.59 104,7409.253 C104,7413.782 101.138,7417.624 97.167,7418.981 C96.66,7419.082 96.48,7418.762 96.48,7418.489 C96.48,7418.151 96.492,7417.047 96.492,7415.675 C96.492,7414.719 96.172,7414.095 95.813,7413.777 C98.04,7413.523 100.38,7412.656 100.38,7408.718 C100.38,7407.598 99.992,7406.684 99.35,7405.966 C99.454,7405.707 99.797,7404.664 99.252,7403.252 C99.252,7403.252 98.414,7402.977 96.505,7404.303 C95.706,7404.076 94.85,7403.962 94,7403.958 C93.15,7403.962 92.295,7404.076 91.497,7404.303 C89.586,7402.977 88.746,7403.252 88.746,7403.252 C88.203,7404.664 88.546,7405.707 88.649,7405.966 C88.01,7406.684 87.619,7407.598 87.619,7408.718 C87.619,7412.646 89.954,7413.526 92.175,7413.785 C91.889,7414.041 91.63,7414.493 91.54,7415.156 C90.97,7415.418 89.522,7415.871 88.63,7414.304 C88.63,7414.304 88.101,7413.319 87.097,7413.247 C87.097,7413.247 86.122,7413.234 87.029,7413.87 C87.029,7413.87 87.684,7414.185 88.139,7415.37 C88.139,7415.37 88.726,7417.2 91.508,7416.58 C91.513,7417.437 91.522,7418.245 91.522,7418.489 C91.522,7418.76 91.338,7419.077 90.839,7418.982 C86.865,7417.627 84,7413.783 84,7409.253 C84,7403.59 88.478,7399 94,7399" id="github-[#142]"></path>
+											</g>
+										</g>
+									</g>
+								</svg>
+							</Button>
+							<Button onclick="window.open('https://www.linkedin.com/in/erisky')">
+								<svg width="28px" height="28px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M18.72 3.99997H5.37C5.19793 3.99191 5.02595 4.01786 4.86392 4.07635C4.70189 4.13484 4.55299 4.22471 4.42573 4.34081C4.29848 4.45692 4.19537 4.59699 4.12232 4.75299C4.04927 4.909 4.0077 5.07788 4 5.24997V18.63C4.01008 18.9901 4.15766 19.3328 4.41243 19.5875C4.6672 19.8423 5.00984 19.9899 5.37 20H18.72C19.0701 19.9844 19.4002 19.8322 19.6395 19.5761C19.8788 19.32 20.0082 18.9804 20 18.63V5.24997C20.0029 5.08247 19.9715 4.91616 19.9078 4.76122C19.8441 4.60629 19.7494 4.466 19.6295 4.34895C19.5097 4.23191 19.3672 4.14059 19.2108 4.08058C19.0544 4.02057 18.8874 3.99314 18.72 3.99997ZM9 17.34H6.67V10.21H9V17.34ZM7.89 9.12997C7.72741 9.13564 7.5654 9.10762 7.41416 9.04768C7.26291 8.98774 7.12569 8.89717 7.01113 8.78166C6.89656 8.66615 6.80711 8.5282 6.74841 8.37647C6.6897 8.22474 6.66301 8.06251 6.67 7.89997C6.66281 7.73567 6.69004 7.57169 6.74995 7.41854C6.80986 7.26538 6.90112 7.12644 7.01787 7.01063C7.13463 6.89481 7.2743 6.80468 7.42793 6.74602C7.58157 6.68735 7.74577 6.66145 7.91 6.66997C8.07259 6.66431 8.2346 6.69232 8.38584 6.75226C8.53709 6.8122 8.67431 6.90277 8.78887 7.01828C8.90344 7.13379 8.99289 7.27174 9.05159 7.42347C9.1103 7.5752 9.13699 7.73743 9.13 7.89997C9.13719 8.06427 9.10996 8.22825 9.05005 8.3814C8.99014 8.53456 8.89888 8.6735 8.78213 8.78931C8.66537 8.90513 8.5257 8.99526 8.37207 9.05392C8.21843 9.11259 8.05423 9.13849 7.89 9.12997ZM17.34 17.34H15V13.44C15 12.51 14.67 11.87 13.84 11.87C13.5822 11.8722 13.3313 11.9541 13.1219 12.1045C12.9124 12.2549 12.7546 12.4664 12.67 12.71C12.605 12.8926 12.5778 13.0865 12.59 13.28V17.34H10.29V10.21H12.59V11.21C12.7945 10.8343 13.0988 10.5225 13.4694 10.3089C13.84 10.0954 14.2624 9.98848 14.69 9.99997C16.2 9.99997 17.34 11 17.34 13.13V17.34Z" fill="#FFFFFF"/>
+								</svg>
+							</Button>
+							<Button title="Download CV" onclick="location.href='https://docs.google.com/document/d/1OeNWwMpF6T2FYNXIwmlhIt16IQkExEE0/export?format=pdf'">
+								<svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<g id="Interface / Download">
+										<path id="Vector" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+									</g>
+								</svg>
+							</Button>
+						</div>
+					</div>
+				</div>
+			</Box>
+		</div>
+		<div id="resume" class="bg-[url('/images/ZVE00990.jpg')] bg-cover py-10 md:py-28">
+			<div class="lg:grid grid-cols-2 gap-5 space-y-5 lg:space-y-0 w-11/12 max-w-2xl lg:max-w-7xl mx-auto">
+				<Timeline
+					title="Experience"
+					items={[
+						{
+							title: "Full-Stack Developer",
+							company: "Weshine",
+							year: "Oct 2023 - Oct 2025",
+							desc: "Engineered the company's websites from the ground up, utilizing a modern tech stack centered on Astro for performance and React for dynamic user interfaces.",
+						},
+						{
+							title: "R&D Analyst",
+							company: "The Manchester Metropolitan University",
+							year: "Feb 2023 - Jul 2023",
+							desc: "Designed and built five functional prototypes for different beneficiaries, leveraging a diverse tech stack including Flask, React, Remix, and React Native to deliver tailored solutions.",
+						},
+						{
+							title: "Web Developer",
+							company: "Freelance",
+							year: "Dec 2022 - January 2023",
+							desc: "Helped a client create and design a commercial attendance management system website using React for the front-end, Flask for the back-end, and MongoDB for the database.",
+						},
+						{
+							title: "Internship",
+							company: "Adira Finance",
+							year: "Feb 2021 - May 2021",
+							desc: "Worked as a developer in their \"Learning Infrastructure\" department. Resumed one of their project development with Flask as the framework.",
+						},
+						{
+							title: "Research Assistant",
+							company: "BINUS International University",
+							year: "Jan 2020 - Jan 2021",
+							desc: "Assisted the lecturers in their ADHD research using VR powered by Unity. Responsible in implementing and managing the Firestore database.",
+						},
+					]}
+				/>
+				<div class="space-y-5">
+					<Timeline
+						title="Education"
+						items={[
+							{
+								year: "2021 - 2022",
+								desc: "Bachelor's degree • Computer Science with Artificial Intelligence • First-Class Honours",
+								title: "University of Nottingham",
+							},
+							{
+								title: "BINUS International University",
+								year: "2018 - 2022",
+								desc: "Bachelor's degree • Computer Science • GPA 3.53/4.00",
+							}
+						]}
+					/>
+					<Box title="Skills">
+						<svg slot="icon" fill="#ffd230" height="44px" width="44px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490" xml:space="preserve">
+							<g>
+								<path d="M195.234,357.719L260.313,245l-65.078-112.719H65.078L0,245l65.078,112.719H195.234z M82.76,162.906h94.794L224.95,245
+									l-47.396,82.094H82.76L35.362,245L82.76,162.906z"/>
+								<path d="M294.766,0l-65.078,112.718l65.078,112.718h130.156L490,112.718L424.922,0H294.766z M407.241,194.812h-94.794
+									l-47.397-82.093l47.397-82.093h94.794l47.396,82.093L407.241,194.812z"/>
+								<path d="M294.766,264.563l-65.078,112.718L294.766,490h130.156L490,377.281l-65.078-112.718H294.766z M407.241,459.375h-94.794
+									l-47.397-82.094l47.397-82.093h94.794l47.396,82.093L407.241,459.375z"/>
+							</g>
+						</svg>
+						<div class="space-y-5">
+							{Object.entries({
+								"Programming Languages": ["Python","Javascript","Typescript"],
+								"Frameworks and Libraries": ["React","Tailwind","Node.js","Astro","Remix","Express","Playwright"],
+								"Databases": ["Firestore","MongoDB","NoSQL"],
+								"DevOps": ["Git","Github","Github Actions","Docker","Google Cloud","Firebase","Linux"],
+								"Third-party APIs": ["ChatGPT","Vertex AI","Algolia","Stripe","Mailchimp"]
+							}).map(([category, skills]) => (
+								<div class="space-x-2 space-y-2">
+									<p class="font-semibold text-lg">{category}</p>
+									{skills.map(skill => (
+										<div class="px-4 py-2 bg-[rgb(30,30,30)] text-amber-300 rounded-full inline-block">
+											<p class="font-[Open_Sans] text-sm font-semibold">{skill}</p>
+										</div>
+									))}
+								</div>
+							))}
+							{/* <div>
+								<div class="flex justify-between">
+									<b>{skill.name}</b>
+									<p class="font-[Open_Sans] text-sm">{skill.percentage}%</p>
+								</div>
+								<div class="h-1 rounded-2xl bg-[rgb(30,30,30)] mt-1">
+									<div class="h-1 rounded-2xl bg-amber-300" style={`width: ${skill.percentage}%`}></div>
+								</div>
+							</div> */}
+						</div>
+					</Box>
+				</div>
+			</div>
+		</div>
+		<footer class="bg-[rgb(30,30,30)]">
+			<p class="text-center text-xs">Like my photos? give a ❤️ on my instagram: <a href="https://instagr.am/erisdayo" target="_blank">@erisdayo</a><br/>Copyright © {new Date().getFullYear()}. All rights reserved.</p>
+		</footer>
 	</body>
 </html>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+</style>

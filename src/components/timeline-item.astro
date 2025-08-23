@@ -1,0 +1,13 @@
+---
+const { title, company="", year, desc } = Astro.props
+---
+
+<div class="rounded-full size-4 bg-amber-300 border-2 border-[rgb(30,30,30)] mx-auto mt-1.5"></div>
+<div class="space-y-1.5">
+    <div>
+        <p class="text-lg font-semibold">{title}</p>
+        <p class="text-sm">{company}</p>
+    </div>
+    <p class="text-amber-300">{year}</p>
+    <p class="font-[Open_Sans]">{desc}</p>
+</div>

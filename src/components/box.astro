@@ -1,0 +1,13 @@
+---
+const { title, className="" } = Astro.props
+---
+
+<div class={`p-8 bg-black/50 backdrop-blur-2xl rounded-2xl ${className}`}>
+    <div class="grid grid-cols-[60px_1fr] gap-5 mb-4">
+        <div class="size-[60px] bg-[rgb(30,30,30)] flex justify-center items-center text-amber-300 rounded-lg">
+            <slot name="icon" />
+        </div>
+        <p class="text-3xl font-black self-center">{title}</p>
+    </div>
+    <slot />
+</div>
