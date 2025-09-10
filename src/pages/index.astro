@@ -53,32 +53,47 @@ const age = Math.floor((new Date()-new Date('2000-04-09T00:00:00'))/(1000 * 60 *
 			</div> -->
 		</div>
 		<div id="about-me" class="bg-[url('/images/ZVE00527.jpg')] bg-cover py-10 md:py-28 min-h-[80lvh] flex items-center">
-			<Box title="About Me" className="w-11/12 max-w-lg lg:max-w-5xl mx-auto">
-				<svg slot="icon" width="48px" height="48px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke-width="4" stroke="#ffd230" fill="none"><circle cx="32" cy="18.14" r="11.14"/><path d="M54.55,56.85A22.55,22.55,0,0,0,32,34.3h0A22.55,22.55,0,0,0,9.45,56.85Z"/></svg>
-				<div class="font-[Open_Sans] lg:flex gap-5 space-y-5 lg:space-y-0">
-					<div class="flex gap-1.5 items-end">
-						<div class="relative flex-none">
-							<Image src={sunglasses} alt="sunglasses" width={40} class="absolute left-[17px] top-8 rotate-y-180 hidden" id="sunglasses" />
-							<Image src={profilePicture} alt="profile picture" width={80} class="rounded-full" onclick="document.getElementById('sunglasses').classList.toggle('hidden')" />
-						</div>
-						<div class="space-y-1.5">
-							{[
-								"Halo! I'm Eris 👋",
-								"I enjoy problem solving, whether its digital or real-world problem 💭",
-								"I'm very fond of technologies 💻",
-								"I strive to become better every day by continuously seeking new knowledge and staying humble."
-							].map((message, i) => (
-								<div class="flex items-end">
-									{i === 3 && <div class="inline-block w-0 h-0 border-solid border-t-0 border-r-0 border-l-[10px] border-b-[10px] border-l-transparent border-r-transparent border-t-transparent border-b-[rgb(30,30,30)]"></div>}
-									<div class={`bg-[rgb(30,30,30)] rounded-r-2xl ${i === 3 ? 'rounded-tl-2xl' : 'rounded-l-2xl ml-2'} p-4`}>
-										<p>{message}</p>
+			<div class="flex flex-col lg:flex-row gap-5 w-11/12 max-w-2xl lg:max-w-7xl mx-auto">
+				<Box title="Chat" className="flex-grow">
+					<svg slot="icon" width="48px" height="48px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M5.59961 19.9203L7.12357 18.7012L7.13478 18.6926C7.45249 18.4384 7.61281 18.3101 7.79168 18.2188C7.95216 18.1368 8.12328 18.0771 8.2998 18.0408C8.49877 18 8.70603 18 9.12207 18H17.8031C18.921 18 19.4806 18 19.908 17.7822C20.2843 17.5905 20.5905 17.2842 20.7822 16.9079C21 16.4805 21 15.9215 21 14.8036V7.19691C21 6.07899 21 5.5192 20.7822 5.0918C20.5905 4.71547 20.2837 4.40973 19.9074 4.21799C19.4796 4 18.9203 4 17.8002 4H6.2002C5.08009 4 4.51962 4 4.0918 4.21799C3.71547 4.40973 3.40973 4.71547 3.21799 5.0918C3 5.51962 3 6.08009 3 7.2002V18.6712C3 19.7369 3 20.2696 3.21846 20.5433C3.40845 20.7813 3.69644 20.9198 4.00098 20.9195C4.35115 20.9191 4.76744 20.5861 5.59961 19.9203Z" stroke="#ffd230" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+					<div class="font-[Open_Sans] space-y-5">
+						<div class="flex gap-1.5 items-end">
+							<div id="avatar" class="relative flex-none">
+								<Image src={sunglasses} alt="sunglasses" width={40} class="absolute left-[17px] top-8 rotate-y-180 hidden" id="sunglasses" />
+								<Image src={profilePicture} alt="profile picture" width={80} class="rounded-full" onclick="document.getElementById('sunglasses').classList.toggle('hidden')" />
+							</div>
+							<div id="chatBox" class="flex flex-col justify-end gap-y-2.5 w-full h-96 overflow-y-auto no-scrollbar">
+								{[
+									"Halo! I'm Eris 👋",
+									// "I enjoy problem solving, whether its digital or real-world problem 💭",
+									// "I'm very fond of technologies 💻",
+									// "I strive to become better every day by continuously seeking new knowledge and staying humble.",
+								].map((message, i) => (
+									<div class="flex items-end">
+										{i === 3 && <div class="inline-block w-0 h-0 border-solid border-t-0 border-r-0 border-l-[10px] border-b-[10px] border-l-transparent border-r-transparent border-t-transparent border-b-[rgb(30,30,30)]"></div>}
+										<div class={`bg-[rgb(30,30,30)] rounded-r-2xl ${i === 3 ? 'rounded-tl-2xl' : 'rounded-bl-2xl ml-2'} p-4`}>
+											<p>{message}</p>
+										</div>
 									</div>
-								</div>
-							))}
+								))}
+							</div>
+						</div>
+						<div class="relative">
+							<input type="text" placeholder="Ask Eris" class="bg-[rgb(30,30,30)] border-2 border-amber-300 rounded-full px-5 py-3 w-full focus:outline-none" />
+							<button class="absolute right-[7px] top-[7px] p-1.5 bg-amber-300 rounded-full cursor-pointer">
+								<svg width="26px" height="26px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M11.5003 12H5.41872M5.24634 12.7972L4.24158 15.7986C3.69128 17.4424 3.41613 18.2643 3.61359 18.7704C3.78506 19.21 4.15335 19.5432 4.6078 19.6701C5.13111 19.8161 5.92151 19.4604 7.50231 18.7491L17.6367 14.1886C19.1797 13.4942 19.9512 13.1471 20.1896 12.6648C20.3968 12.2458 20.3968 11.7541 20.1896 11.3351C19.9512 10.8529 19.1797 10.5057 17.6367 9.81135L7.48483 5.24303C5.90879 4.53382 5.12078 4.17921 4.59799 4.32468C4.14397 4.45101 3.77572 4.78336 3.60365 5.22209C3.40551 5.72728 3.67772 6.54741 4.22215 8.18767L5.24829 11.2793C5.34179 11.561 5.38855 11.7019 5.407 11.8459C5.42338 11.9738 5.42321 12.1032 5.40651 12.231C5.38768 12.375 5.34057 12.5157 5.24634 12.7972Z" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+							</button>
 						</div>
 					</div>
-					<div class="border-amber-300 border-t-2 lg:border-t-0 lg:border-l-2 pt-5 lg:pt-0 lg:pl-5 flex-none flex flex-col gap-y-4 justify-center">
-						<div class="grid grid-cols-[minmax(100px,120px)_1fr] gap-y-2.5">
+				</Box>
+				<Box title="About Me" className="flex-none h-min">
+					<svg slot="icon" width="48px" height="48px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke-width="4" stroke="#ffd230" fill="none"><circle cx="32" cy="18.14" r="11.14"/><path d="M54.55,56.85A22.55,22.55,0,0,0,32,34.3h0A22.55,22.55,0,0,0,9.45,56.85Z"/></svg>
+					<div class="flex-none flex flex-col gap-y-4 justify-center">
+						<div class="border-amber-300 border-l-2 pl-5 grid grid-cols-[minmax(100px,120px)_1fr] gap-y-2.5">
 							<b>Name:</b>
 							<p>Muhammad Erizky Suryaputra</p>
 							<b>Age:</b>
@@ -118,8 +133,8 @@ const age = Math.floor((new Date()-new Date('2000-04-09T00:00:00'))/(1000 * 60 *
 							</Button>
 						</div>
 					</div>
-				</div>
-			</Box>
+				</Box>
+			</div>
 		</div>
 		<div id="resume" class="bg-[url('/images/ZVE00990.jpg')] bg-cover py-10 md:py-28">
 			<div class="lg:grid grid-cols-2 gap-5 space-y-5 lg:space-y-0 w-11/12 max-w-2xl lg:max-w-7xl mx-auto">
@@ -224,4 +239,66 @@ const age = Math.floor((new Date()-new Date('2000-04-09T00:00:00'))/(1000 * 60 *
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+	.no-scrollbar {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
 </style>
+
+<script>
+	const avatar = document.getElementById('avatar') as HTMLDivElement;
+	const chatBox = document.getElementById('chatBox') as HTMLDivElement;
+	const input = document.querySelector('#about-me input') as HTMLInputElement; 
+	const button = document.querySelector('#about-me button') as HTMLButtonElement;
+
+	const addMessage = (message: string, fromUser: boolean) => {
+		const messageContainer = document.createElement('div');
+		messageContainer.className = 'flex items-end ' + (fromUser ? 'justify-end' : '');
+
+		const messageBubble = document.createElement('div');
+		messageBubble.className = `max-w-[400px] p-4 rounded-2xl ${fromUser ? 'bg-amber-300 text-black rounded-tr-none' : 'bg-[rgb(30,30,30)] rounded-tl-none ml-2'}`;
+		messageBubble.textContent = message;
+
+		messageContainer.appendChild(messageBubble);
+		chatBox.appendChild(messageContainer);
+		chatBox.scrollTop = chatBox.scrollHeight; 
+	};
+
+	input.addEventListener('keydown', (e) => {
+		if (e.key === 'Enter') {
+			button.click(); 
+		}
+	});
+
+	button.addEventListener('click', async () => {
+		if (input.value.trim() === '') return;
+		const value = input.value;
+		input.value = ''; 
+		button.disabled = true;
+		button.classList.add('opacity-50', 'cursor-not-allowed');
+		avatar.classList.add('animate-pulse');
+
+		addMessage(value, true);
+		addMessage('Let me think...', false);
+
+		const response = await fetch('http://erizky.ddns.net', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ message: value }),
+		});
+		const json = await response.json();
+		
+		chatBox.removeChild(chatBox.lastChild!);
+		addMessage(json.answer, false);
+
+		chatBox.scrollTop = chatBox.scrollHeight; 
+		button.disabled = false;
+		button.classList.remove('opacity-50', 'cursor-not-allowed');
+		avatar.classList.remove('animate-pulse');
+	});
+</script>
