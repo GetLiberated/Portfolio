@@ -309,7 +309,7 @@ const age = Math.floor((new Date()-new Date('2000-04-09T00:00:00'))/(1000 * 60 *
 			},
 			body: JSON.stringify({ message: value }),
 		});
-		const json = await response.json();
+		const json = response.ok ? await response.json() : { answer: 'Sorry, I\'m unavailable at the moment. Please try again later.' };
 		
 		// chatBox.removeChild(chatBox.lastChild!);
 		loadingIndicator.classList.add("hidden")
