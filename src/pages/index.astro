@@ -81,6 +81,14 @@ const age = Math.floor((new Date()-new Date('2000-04-09T00:00:00'))/(1000 * 60 *
 										</div>
 									</div>
 								))}
+								<div id="loadingIndicator" class="bg-[rgb(30,30,30)] rounded-r-2xl rounded-bl-2xl lg:ml-2 p-4 space-y-4 hidden max-w-[400px]">
+									<div class="flex gap-2">
+										<div class="h-2 rounded bg-[rgb(90,90,90)] animate-pulse w-1/10"></div><div class="h-2 rounded bg-[rgb(90,90,90)] animate-pulse w-2/3"></div><div class="h-2 rounded bg-[rgb(90,90,90)] animate-pulse w-1/4"></div>
+									</div>
+									<div class="flex gap-2">
+										<div class="h-2 rounded bg-[rgb(90,90,90)] animate-pulse w-1/4"></div><div class="h-2 rounded bg-[rgb(90,90,90)] animate-pulse w-1/5"></div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="relative">
@@ -254,6 +262,7 @@ const age = Math.floor((new Date()-new Date('2000-04-09T00:00:00'))/(1000 * 60 *
 <script>
 	const avatar = document.getElementById('avatar') as HTMLDivElement;
 	const chatBox = document.getElementById('chatBox') as HTMLDivElement;
+	const loadingIndicator = document.getElementById('loadingIndicator') as HTMLDivElement;
 	const input = document.querySelector('#about-me input') as HTMLInputElement; 
 	const button = document.querySelector('#about-me button') as HTMLButtonElement;
 
@@ -280,12 +289,18 @@ const age = Math.floor((new Date()-new Date('2000-04-09T00:00:00'))/(1000 * 60 *
 		if (input.value.trim() === '') return;
 		const value = input.value;
 		input.value = ''; 
+		
 		button.disabled = true;
 		button.classList.add('opacity-50', 'cursor-not-allowed');
-		avatar.classList.add('animate-pulse');
+		// avatar.classList.add('animate-pulse');
 
 		addMessage(value, true);
-		addMessage('Let me think...', false);
+		setTimeout(() => {
+			// addMessage('Let me think...', false);
+			loadingIndicator.classList.remove("hidden")
+			chatBox.appendChild(loadingIndicator)
+			chatBox.scrollTop = chatBox.scrollHeight; 
+		}, 250);
 
 		const response = await fetch('https://erizky.ddns.net', {
 			method: 'POST',
@@ -296,12 +311,13 @@ const age = Math.floor((new Date()-new Date('2000-04-09T00:00:00'))/(1000 * 60 *
 		});
 		const json = await response.json();
 		
-		chatBox.removeChild(chatBox.lastChild!);
+		// chatBox.removeChild(chatBox.lastChild!);
+		loadingIndicator.classList.add("hidden")
 		addMessage(json.answer, false);
-
 		chatBox.scrollTop = chatBox.scrollHeight; 
+
 		button.disabled = false;
 		button.classList.remove('opacity-50', 'cursor-not-allowed');
-		avatar.classList.remove('animate-pulse');
+		// avatar.classList.remove('animate-pulse');
 	});
 </script>
