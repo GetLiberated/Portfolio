@@ -25,6 +25,10 @@
     "wdth" 100;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
