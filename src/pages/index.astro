@@ -249,6 +249,16 @@ const age = Math.floor((new Date()-new Date('2000-04-09T00:00:00'))/(1000 * 60 *
 </html>
 
 <script>
+	const generateUUID = () => {
+		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+			let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+			return v.toString(16);
+		});
+	}
+
+	const uuid = sessionStorage.getItem("uuid") || generateUUID();
+	sessionStorage.setItem("uuid", uuid)
+
 	const avatar = document.getElementById('avatar') as HTMLDivElement;
 	const chatBox = document.getElementById('chatBox') as HTMLDivElement;
 	const loadingIndicator = document.getElementById('loadingIndicator') as HTMLDivElement;
@@ -296,7 +306,7 @@ const age = Math.floor((new Date()-new Date('2000-04-09T00:00:00'))/(1000 * 60 *
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ message: value }),
+			body: JSON.stringify({ message: value, thread: uuid }),
 		});
 		const json = response.ok ? await response.json() : { answer: 'Sorry, I\'m unavailable at the moment. Please try again later.' };
 		
